@@ -11,14 +11,14 @@ import android.widget.ImageView;
 import com.google.gson.Gson;
 import com.haipeng.decoration.manager.R;
 import com.haipeng.decoration.manager.listener.OnHttpPostListener;
+import com.haipeng.decoration.manager.model.MasterModel;
 import com.haipeng.decoration.manager.model.UserModel;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import de.greenrobot.event.EventBus;
 
-public class AddUserActivity extends Activity implements OnHttpPostListener, View.OnClickListener {
+public class AddMastersActivity extends Activity implements OnHttpPostListener,View.OnClickListener{
 
     Button back;
     Button commit;
@@ -28,11 +28,11 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_user);
         EventBus.getDefault().register(this);
+        setContentView(R.layout.activity_add_master);
         back = (Button) findViewById(R.id.back);
         commit = (Button) findViewById(R.id.commit);
-        img = (ImageView) findViewById(R.id.iv_add_user);
+        img = (ImageView) findViewById(R.id.iv_add_master);
 
         back.setOnClickListener(this);
         commit.setOnClickListener(this);
@@ -43,7 +43,6 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
         etEmail = (EditText) findViewById(R.id.et_email);
         etPassword = (EditText) findViewById(R.id.et_password);
         etRePassword = (EditText) findViewById(R.id.et_re_password);
-
     }
 
 
@@ -57,29 +56,15 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back:
-                break;
-            case R.id.commit:
-                break;
-            case R.id.iv_add_user:
-                break;
-        }
-    }
-
-    public String getUserModelJson(String imgPath){
-        UserModel userModel = new UserModel();
-        userModel.setName(filterStringExe(etName.getText()));
-        userModel.setPhone(filterStringExe(etPhone.getText()));
-        userModel.setEmail(filterStringExe(etEmail.getText()));
-        userModel.setPassword(filterStringExe(etPassword.getText()));
-        userModel.setRepeatPassword(filterStringExe(etRePassword.getText()));
-        userModel.setImagePath(imgPath);
+    public String getMasterModelJson(String imgPath){
+        MasterModel masterModel = new MasterModel();
+        masterModel.setName(filterStringExe(etName.getText()));
+        masterModel.setPhone(filterStringExe(etPhone.getText()));
+        masterModel.setEmail(filterStringExe(etEmail.getText()));
+        masterModel.setImagePath(imgPath);
         Gson gson = new Gson();
 
-        return gson.toJson(userModel);
+        return gson.toJson(masterModel);
     }
 
     public String filterStringExe(Editable eta){
@@ -89,7 +74,21 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
         else
         {
             temp = eta.toString().trim();
-             return temp;
+            return temp;
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.back:
+                break;
+            case R.id.commit:
+                break;
+            case R.id.iv_add_master:
+                break;
         }
     }
 
@@ -98,4 +97,5 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
 }

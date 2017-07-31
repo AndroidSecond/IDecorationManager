@@ -17,16 +17,19 @@
         <item name="android:layout_marginTop">10dp</item>
     </style>
 
-    <style name="add_user_edit">
+    <style name="add_edit_style">
         <item name="android:textSize">20sp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:padding">5dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:hint">请输入...</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:layout_gravity">bottom</item>
+
     </style>
 
-    <style name="add_user_edit_title">
+    <style name="add_title_style">
         <item name="android:textSize">20sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">50dp</item>

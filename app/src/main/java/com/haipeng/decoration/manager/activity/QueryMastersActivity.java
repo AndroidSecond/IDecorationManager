@@ -3,15 +3,13 @@ package com.haipeng.decoration.manager.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.haipeng.decoration.manager.R;
+import com.haipeng.decoration.manager.adapter.MasterAdapter;
 import com.haipeng.decoration.manager.adapter.UserAdapter;
-import com.haipeng.decoration.manager.http.okhttp3.OkHttpHomeworkBase;
 import com.haipeng.decoration.manager.http.okhttp3.OkHttpHomeworkGet;
-import com.haipeng.decoration.manager.http.okhttp3.OkHttpManager;
 import com.haipeng.decoration.manager.listener.OnHttpGetListener;
 import com.haipeng.decoration.manager.listener.OnHttpPostListener;
 import com.haipeng.decoration.manager.model.MasterResponeseModel;
@@ -25,20 +23,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class QueryUserActivity extends Activity implements OnHttpGetListener {
+public class QueryMastersActivity extends Activity implements OnHttpGetListener {
 
-    List<UserResponseModel> list = new ArrayList<UserResponseModel>();
-    UserAdapter userAdapter;
+    List<MasterResponeseModel>  list= new ArrayList<MasterResponeseModel>();
+    MasterAdapter masterAdapter;
     RecyclerView recyclerView;
     OkHttpHomeworkGet okHttpHomeworkGet;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_query_user);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_users);
-        userAdapter = new UserAdapter(this);
-        recyclerView.setAdapter(userAdapter);
+        setContentView(R.layout.activity_query_master);
+
+        recyclerView = (RecyclerView) findViewById(R.id.rv_master);
+        masterAdapter = new MasterAdapter(this);
+        recyclerView.setAdapter(masterAdapter);
         okHttpHomeworkGet = new OkHttpHomeworkGet(this,this);
         okHttpHomeworkGet.requestUserModelsGet(0);
     }
@@ -53,14 +51,15 @@ public class QueryUserActivity extends Activity implements OnHttpGetListener {
         try {
             jsonObject = new JSONObject(jsonStr);
             jsonArray = jsonObject.getJSONArray("list");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                UserResponseModel userResponeseModel = gson.fromJson(jsonStr, UserResponseModel.class);
-                list.add(userResponeseModel);
+            for(int i =0;i<jsonArray.length();i++){
+                MasterResponeseModel masterResponeseModel = gson.fromJson(jsonStr,MasterResponeseModel.class);
+                list.add(masterResponeseModel);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        userAdapter.setDatas(list);
+
+        masterAdapter.setDatas(list);
 
     }
 

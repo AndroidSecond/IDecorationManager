@@ -10,14 +10,12 @@
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:text="查询用户页"
+        android:text="查询师傅页"
         android:textColor="@color/colorWhite"
         android:textSize="30sp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_users"
+        android:id="@+id/rv_master"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

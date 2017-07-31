@@ -17,7 +17,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.AddUserActivity" />
+        <activity android:name=".activity.AddMastersActivity"></activity>
+        <activity android:name=".activity.AddSuppliersActivity"></activity>
+        <activity android:name=".activity.AddOrdersActivity"></activity>
+
         <activity android:name=".activity.QueryUserActivity"></activity>
+        <activity android:name=".activity.QueryMastersActivity"></activity>
+        <activity android:name=".activity.QuerySuppliersActivity"></activity>
+        <activity android:name=".activity.QueryOrdersActivity"></activity>
     </application>
 
 </manifest>
