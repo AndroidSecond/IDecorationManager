@@ -12,10 +12,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -24,7 +22,7 @@ import okhttp3.Response;
  * Created by wanin on 2017/4/26.
  */
 
-public class OkHttpHomeworkGet extends OkHttpHomeworkBase {
+public class OkHttpDecorationGet extends OkHttpDecorationBase {
 
     private String TAG = "tag";
     private OkHttpClient okHttpClient;
@@ -36,11 +34,14 @@ public class OkHttpHomeworkGet extends OkHttpHomeworkBase {
     int tryCount = 1;
     String tryUrl;
 
-    public OkHttpHomeworkGet(OnHttpGetListener listener, Context context) {
+    public OkHttpDecorationGet(Context context) {
         okHttpManager = OkHttpManager.getInstance();
         okHttpClient = okHttpManager.getOkHttpClient();
-        mListener = listener;
         this.mContext = context;
+    }
+
+    public void setListener(OnHttpGetListener listener){
+        this.mListener = listener;
     }
 
     public void requestTokenGet(int type) {
@@ -110,9 +111,9 @@ public class OkHttpHomeworkGet extends OkHttpHomeworkBase {
 
                                 if ("200".equals(jsonObject.getString("code"))) {
                                     if (jsonObject.has("data")) {
-                                        mListener.getResponse(type, jsonObject.getJSONObject("data"));
+                                        mListener.getResponse(type, jsonObject.getJSONObject("data").toString());
                                     } else if (jsonObject.has("msg")) {
-                                        mListener.getResponse(type, jsonObject.getJSONObject("msg"));
+                                        mListener.getResponse(type, jsonObject.getJSONObject("msg").toString());
                                     }
                                 } else {
 //                                    EventBus.getDefault().post(new ToastEvent(jsonObject.getString("msg")));
@@ -123,7 +124,7 @@ public class OkHttpHomeworkGet extends OkHttpHomeworkBase {
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        mListener.getResponse(type, new JSONObject());
+                        mListener.getResponse(type, new JSONObject().toString());
                     }
                 } else {
                     tryRequest();

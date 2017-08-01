@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.haipeng.decoration.manager.R;
 import com.haipeng.decoration.manager.adapter.MasterAdapter;
-import com.haipeng.decoration.manager.adapter.UserAdapter;
-import com.haipeng.decoration.manager.http.okhttp3.OkHttpHomeworkGet;
+import com.haipeng.decoration.manager.http.okhttp3.OkHttpDecorationGet;
 import com.haipeng.decoration.manager.listener.OnHttpGetListener;
-import com.haipeng.decoration.manager.listener.OnHttpPostListener;
 import com.haipeng.decoration.manager.model.MasterResponeseModel;
-import com.haipeng.decoration.manager.model.UserResponseModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +24,7 @@ public class QueryMastersActivity extends Activity implements OnHttpGetListener 
     List<MasterResponeseModel>  list= new ArrayList<MasterResponeseModel>();
     MasterAdapter masterAdapter;
     RecyclerView recyclerView;
-    OkHttpHomeworkGet okHttpHomeworkGet;
+    OkHttpDecorationGet okHttpHomeworkGet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +33,7 @@ public class QueryMastersActivity extends Activity implements OnHttpGetListener 
         recyclerView = (RecyclerView) findViewById(R.id.rv_master);
         masterAdapter = new MasterAdapter(this);
         recyclerView.setAdapter(masterAdapter);
-        okHttpHomeworkGet = new OkHttpHomeworkGet(this,this);
+        okHttpHomeworkGet = new OkHttpDecorationGet(this);
         okHttpHomeworkGet.requestUserModelsGet(0);
     }
 

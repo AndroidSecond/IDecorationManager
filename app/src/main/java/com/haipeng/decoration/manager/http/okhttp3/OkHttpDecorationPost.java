@@ -1,13 +1,15 @@
 package com.haipeng.decoration.manager.http.okhttp3;
 
 
+import android.content.Context;
+
 import com.haipeng.decoration.manager.constant.UrlConstant;
+import com.haipeng.decoration.manager.listener.OnHttpPostListener;
 
 import org.json.JSONObject;
 
 import java.io.IOException;
 
-import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -19,7 +21,7 @@ import okhttp3.Response;
  * Created by wanin on 2017/4/26.
  */
 
-public class OkHttpHomeworkPost extends OkHttpHomeworkBase {
+public class OkHttpDecorationPost extends OkHttpDecorationBase {
 
     OkHttpManager okHttpManager;
     OkHttpClient okHttpClient;
@@ -29,18 +31,25 @@ public class OkHttpHomeworkPost extends OkHttpHomeworkBase {
     int tryCount = 1;
     FormBody tryRequestBody;
     String tryUrl = "";
+    OnHttpPostListener httpPostListener;
+    Context mContext;
 
-    public OkHttpHomeworkPost() {
+    public OkHttpDecorationPost(Context context) {
         okHttpManager = OkHttpManager.getInstance();
         okHttpClient = okHttpManager.getOkHttpClient();
+        this.mContext = context;
+    }
+
+    public void setOnPostListener(OnHttpPostListener httpPostListener) {
+        this.httpPostListener = httpPostListener;
     }
 
 
     public void requestSubmitUserPost(String jsonStr) {
         FormBody.Builder requestBody = new FormBody.Builder();
-        initFormBody(requestBody);
+//        initFormBody(requestBody);
         requestBody.add("UserModel", jsonStr);
-        requestPostExecute(requestBody.build(),UrlConstant.api_url);
+        requestPostExecute(requestBody.build(), UrlConstant.URL_ADD_USER);
         type = SUBMIT_HOMEWORK_TYPE;
 
     }
@@ -49,12 +58,10 @@ public class OkHttpHomeworkPost extends OkHttpHomeworkBase {
         FormBody.Builder requestBody = new FormBody.Builder();
         initFormBody(requestBody);
         requestBody.add("MasterModel", jsonStr);
-        requestPostExecute(requestBody.build(),UrlConstant.api_url);
+        requestPostExecute(requestBody.build(), UrlConstant.api_url);
         type = SUBMIT_HOMEWORK_TYPE;
 
     }
-
-
 
 
     public void requestPostExecute(final FormBody requestBody, final String url) {
@@ -102,6 +109,7 @@ public class OkHttpHomeworkPost extends OkHttpHomeworkBase {
                                 if ("200".equals(jsonObject.getString("code"))) {
                                     if (jsonObject.has("data")) {
 //                                        EventBus.getDefault().post(new ToastEvent(jsonObject.getString("data")));
+                                        httpPostListener.responsePostSuccess(type, jsonObject.getString("data"));
                                     } else if (jsonObject.has("msg")) {
 //                                        EventBus.getDefault().post(new ToastEvent(jsonObject.optString("msg")));
                                     }
@@ -133,7 +141,7 @@ public class OkHttpHomeworkPost extends OkHttpHomeworkBase {
     public void tryReqeust() {
         ++tryCount;
         if (tryCount <= 3) {
-            requestPostExecute(tryRequestBody,tryUrl);
+            requestPostExecute(tryRequestBody, tryUrl);
         } else {
 //            EventBus.getDefault().post(new ToastEvent("网络连接失败"));
             tryCount = 0;

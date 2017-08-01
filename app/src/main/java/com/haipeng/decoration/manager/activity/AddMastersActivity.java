@@ -45,9 +45,8 @@ public class AddMastersActivity extends Activity implements OnHttpPostListener,V
         etRePassword = (EditText) findViewById(R.id.et_re_password);
     }
 
-
     @Override
-    public void responsePostSuccess(int varl, JSONObject jsonObject) {
+    public void responsePostSuccess(int varl, String jsonStr) {
 
     }
 

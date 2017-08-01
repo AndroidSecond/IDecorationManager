@@ -10,10 +10,11 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.haipeng.decoration.manager.R;
+import com.haipeng.decoration.manager.http.okhttp3.OkHttpDecorationGet;
+import com.haipeng.decoration.manager.http.okhttp3.OkHttpDecorationPost;
 import com.haipeng.decoration.manager.listener.OnHttpPostListener;
 import com.haipeng.decoration.manager.model.UserModel;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import de.greenrobot.event.EventBus;
@@ -24,12 +25,17 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
     Button commit;
     ImageView img;
     EditText etName, etPhone, etEmail, etPassword, etRePassword;
+    OkHttpDecorationGet okHttpGet;
+    OkHttpDecorationPost okHttpPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
-        EventBus.getDefault().register(this);
+//        EventBus.getDefault().register(this);
+        okHttpGet = new OkHttpDecorationGet(this);
+        okHttpPost = new OkHttpDecorationPost(this);
+
         back = (Button) findViewById(R.id.back);
         commit = (Button) findViewById(R.id.commit);
         img = (ImageView) findViewById(R.id.iv_add_user);
@@ -48,7 +54,7 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
 
 
     @Override
-    public void responsePostSuccess(int varl, JSONObject jsonObject) {
+    public void responsePostSuccess(int varl, String jsonStr) {
 
     }
 
@@ -63,6 +69,7 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
             case R.id.back:
                 break;
             case R.id.commit:
+                okHttpPost.requestSubmitUserPost(getUserModelJson(""));
                 break;
             case R.id.iv_add_user:
                 break;
@@ -95,7 +102,7 @@ public class AddUserActivity extends Activity implements OnHttpPostListener, Vie
 
     @Override
     protected void onDestroy() {
-        EventBus.getDefault().unregister(this);
+//        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 }

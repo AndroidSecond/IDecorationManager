@@ -12,7 +12,7 @@ import okhttp3.FormBody;
  * Created by wanin on 2017/4/28.
  */
 
-public class OkHttpHomeworkBase {
+public class OkHttpDecorationBase {
     /**
      * 根据时间戳和key获得md5
      *

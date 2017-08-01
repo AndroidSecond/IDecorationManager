@@ -7,6 +7,6 @@ import org.json.JSONObject;
  */
 
 public interface OnHttpPostListener {
-    void responsePostSuccess(int varl, JSONObject jsonObject);
+    void responsePostSuccess(int varl, String jsonStr);
     void responsePostFail(int varl);
 }

@@ -19,9 +19,8 @@ public class AddSuppliersActivity extends Activity implements OnHttpPostListener
         EventBus.getDefault().register(this);
     }
 
-
     @Override
-    public void responsePostSuccess(int varl, JSONObject jsonObject) {
+    public void responsePostSuccess(int varl, String jsonStr) {
 
     }
 
@@ -29,8 +28,6 @@ public class AddSuppliersActivity extends Activity implements OnHttpPostListener
     public void responsePostFail(int varl) {
 
     }
-
-
 
     @Override
     protected void onDestroy() {

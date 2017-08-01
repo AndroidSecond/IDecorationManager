@@ -17,9 +17,8 @@ public class QueryOrdersActivity extends Activity implements OnHttpPostListener 
         setContentView(R.layout.activity_query_user);
     }
 
-
     @Override
-    public void responsePostSuccess(int varl, JSONObject jsonObject) {
+    public void responsePostSuccess(int varl, String jsonStr) {
 
     }
 
@@ -27,6 +26,4 @@ public class QueryOrdersActivity extends Activity implements OnHttpPostListener 
     public void responsePostFail(int varl) {
 
     }
-
-
 }
