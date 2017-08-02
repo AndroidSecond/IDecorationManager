@@ -40,7 +40,7 @@ public class OkHttpDecorationGet extends OkHttpDecorationBase {
         this.mContext = context;
     }
 
-    public void setListener(OnHttpGetListener listener){
+    public void setListener(OnHttpGetListener listener) {
         this.mListener = listener;
     }
 
@@ -56,10 +56,10 @@ public class OkHttpDecorationGet extends OkHttpDecorationBase {
 
     public void requestUserModelsGet(int type) {
         this.type = type;
-        String uri = UrlConstant.UPLOAD_IMAGE;
-        Map<String, String> params = new HashMap<String, String>();
-        initMap(params);
-        uri = packageUri(params, uri);
+        String uri = UrlConstant.URL_QUERY_USER;
+//        Map<String, String> params = new HashMap<String, String>();
+//        initMap(params);
+//        uri = packageUri(params, uri);
         requestGetExecute(uri);
     }
 
@@ -105,26 +105,27 @@ public class OkHttpDecorationGet extends OkHttpDecorationBase {
                         content = response.body().string();
 
                         if (null != content) {
-                            JSONObject jsonObject = new JSONObject(content);
-                            if (null == jsonObject) {
-                            } else {
+//                            JSONObject jsonObject = new JSONObject(content);
+//                            if (null == jsonObject) {
+//                            } else {
+                            mListener.getResponse(type, content);
+//                                if ("200".equals(jsonObject.getString("code"))) {
+//                                    if (jsonObject.has("data")) {
+//                                        mListener.getResponse(type, jsonObject.getJSONObject("data").toString());
+//                                    } else if (jsonObject.has("msg")) {
+//                                        mListener.getResponse(type, jsonObject.getJSONObject("msg").toString());
+//                                    }
+//                                } else {
+////                                    EventBus.getDefault().post(new ToastEvent(jsonObject.getString("msg")));
+//                                }
 
-                                if ("200".equals(jsonObject.getString("code"))) {
-                                    if (jsonObject.has("data")) {
-                                        mListener.getResponse(type, jsonObject.getJSONObject("data").toString());
-                                    } else if (jsonObject.has("msg")) {
-                                        mListener.getResponse(type, jsonObject.getJSONObject("msg").toString());
-                                    }
-                                } else {
-//                                    EventBus.getDefault().post(new ToastEvent(jsonObject.getString("msg")));
-                                }
-
-                            }
+//                            }
                         }
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        mListener.getResponse(type, new JSONObject().toString());
+//                        mListener.getResponse(type, new JSONObject().toString());
+                        mListener.getResponeseFail(type);
                     }
                 } else {
                     tryRequest();

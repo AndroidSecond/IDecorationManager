@@ -2,6 +2,7 @@ package com.haipeng.decoration.manager.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
@@ -30,11 +31,18 @@ public class QueryUserActivity extends Activity implements OnHttpGetListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query_user);
+        LinearLayoutManager VLM = new LinearLayoutManager(this);
+        VLM.setOrientation(LinearLayoutManager.VERTICAL);
+
         recyclerView = (RecyclerView) findViewById(R.id.rv_users);
         userAdapter = new UserAdapter(this);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(VLM);
+
         recyclerView.setAdapter(userAdapter);
         okHttpHomeworkGet = new OkHttpDecorationGet(this);
         okHttpHomeworkGet.requestUserModelsGet(0);
+        okHttpHomeworkGet.setListener(this);
     }
 
 
@@ -48,13 +56,19 @@ public class QueryUserActivity extends Activity implements OnHttpGetListener {
             jsonArray = new JSONArray(jsonStr);
 //            jsonArray = jsonObject.getJSONArray("list");
             for (int i = 0; i < jsonArray.length(); i++) {
-                UserResponseModel userResponeseModel = gson.fromJson(jsonStr, UserResponseModel.class);
+                UserResponseModel userResponeseModel = gson.fromJson(jsonArray.getString(i), UserResponseModel.class);
                 list.add(userResponeseModel);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        userAdapter.setDatas(list);
+
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                userAdapter.setDatas(list);
+            }
+        });
 
     }
 

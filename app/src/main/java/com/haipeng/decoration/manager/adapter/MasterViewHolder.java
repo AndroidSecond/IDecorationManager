@@ -9,12 +9,15 @@ import android.widget.TextView;
  * Created by Administrator on 2017/7/19.
  */
 
-public class MasterViewHolder extends RecyclerView.ViewHolder{
+public class MasterViewHolder extends RecyclerView.ViewHolder {
 
     public MasterViewHolder(View itemView) {
         super(itemView);
     }
 
-    public ImageView ivImageView;
-    public TextView tv;
+    public TextView tvName;
+    public TextView tvPhone;
+    public TextView tvEmail;
+    public TextView tvAddress;
+
 }

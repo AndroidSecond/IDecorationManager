@@ -47,7 +47,7 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterViewHolder> {
 
     @Override
     public void onBindViewHolder(MasterViewHolder holder, int position) {
-        holder.ivImageView.setImageResource(R.mipmap.ic_launcher);
+//        holder.ivImageView.setImageResource(R.mipmap.ic_launcher);
 //        holder.tv.setText(mDatas.get(position));
 
     }

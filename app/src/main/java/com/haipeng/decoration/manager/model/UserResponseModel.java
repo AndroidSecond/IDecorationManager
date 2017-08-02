@@ -5,10 +5,10 @@ package com.haipeng.decoration.manager.model;
  */
 
 public class UserResponseModel {
-    public String name;
-    public String phone;
-    public String email;
-    public String address;
+    public String name = "";
+    public String phone = "";
+    public String email = "";
+    public String address = "";
 
     public String getName() {
         return name;
