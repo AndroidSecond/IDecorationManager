@@ -6,15 +6,15 @@ import android.os.Bundle;
 import com.haipeng.decoration.manager.R;
 import com.haipeng.decoration.manager.listener.OnHttpPostListener;
 
-import org.json.JSONObject;
+import de.greenrobot.event.EventBus;
 
-
-public class QuerySuppliersActivity extends Activity implements OnHttpPostListener {
+public class AddVendorsActivity extends Activity implements OnHttpPostListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_query_user);
+        setContentView(R.layout.activity_add_vendor);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -25,5 +25,11 @@ public class QuerySuppliersActivity extends Activity implements OnHttpPostListen
     @Override
     public void responsePostFail(int varl) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }

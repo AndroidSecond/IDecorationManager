@@ -8,11 +8,11 @@ import android.widget.Button;
 
 import com.haipeng.decoration.manager.activity.AddMastersActivity;
 import com.haipeng.decoration.manager.activity.AddOrdersActivity;
-import com.haipeng.decoration.manager.activity.AddSuppliersActivity;
+import com.haipeng.decoration.manager.activity.AddVendorsActivity;
 import com.haipeng.decoration.manager.activity.AddUserActivity;
 import com.haipeng.decoration.manager.activity.QueryMastersActivity;
 import com.haipeng.decoration.manager.activity.QueryOrdersActivity;
-import com.haipeng.decoration.manager.activity.QuerySuppliersActivity;
+import com.haipeng.decoration.manager.activity.QueryVendorsActivity;
 import com.haipeng.decoration.manager.activity.QueryUserActivity;
 
 
@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivityM(AddMastersActivity.class);
                 break;
             case R.id.btn_add_supplier:
-                startActivityM(AddSuppliersActivity.class);
+                startActivityM(AddVendorsActivity.class);
                 break;
             case R.id.btn_add_order:
                 startActivityM(AddOrdersActivity.class);
@@ -73,7 +73,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivityM(QueryMastersActivity.class);
                 break;
             case R.id.btn_query_supplier:
-                startActivityM(QuerySuppliersActivity.class);
+                startActivityM(QueryVendorsActivity.class);
                 break;
             case R.id.btn_query_order:
                 startActivityM(QueryOrdersActivity.class);
