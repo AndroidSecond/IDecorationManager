@@ -21,7 +21,7 @@
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
-                android:text="添加师傅"
+                android:text="添加团队"
                 android:textColor="@color/colorWhite"
                 android:textSize="30sp" />
 
@@ -62,11 +62,12 @@
 
                 <TextView
                     style="@style/add_title_style"
-                    android:text="密码" />
+                    android:text="地址" />
 
                 <TextView
                     style="@style/add_title_style"
-                    android:text="确认密码" />
+                    android:text="法人代表" />
+
 
             </LinearLayout>
 
@@ -88,11 +89,11 @@
                     style="@style/add_edit_style" />
 
                 <EditText
-                    android:id="@+id/et_password"
+                    android:id="@+id/et_address"
                     style="@style/add_edit_style" />
 
                 <EditText
-                    android:id="@+id/et_re_password"
+                    android:id="@+id/et_legal_representative"
                     style="@style/add_edit_style" />
 
             </LinearLayout>
@@ -101,14 +102,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 style="@style/add_title_style"
-                android:text="添加照片" />
+                android:text="头像" />
 
             <ImageView
-                android:id="@+id/iv_add_master"
+                android:id="@+id/iv_add_master_avator"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="30dp"
+                android:background="@color/colorPrimary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/add_title_style"
+                android:text="营业执照" />
+
+            <ImageView
+                android:id="@+id/iv_add_license"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="30dp"

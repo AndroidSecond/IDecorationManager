@@ -14,46 +14,40 @@ import com.haipeng.decoration.manager.http.okhttp3.OkHttpDecorationGet;
 import com.haipeng.decoration.manager.http.okhttp3.OkHttpDecorationPost;
 import com.haipeng.decoration.manager.listener.OnHttpPostListener;
 import com.haipeng.decoration.manager.model.MasterModel;
-import com.haipeng.decoration.manager.model.UserModel;
-import com.haipeng.decoration.manager.model.VendorModel;
+import com.haipeng.decoration.manager.model.RecommendModel;
 import com.haipeng.decoration.manager.utils.UniqueNumberUtils;
 
-import de.greenrobot.event.EventBus;
-
-public class AddVendorsActivity extends Activity implements OnHttpPostListener,View.OnClickListener {
+public class AddRecommendActivity extends Activity implements OnHttpPostListener, View.OnClickListener {
 
     Button back;
     Button commit;
-    ImageView imageAavator,imageLicense;//,imgOther;
-    EditText etName,etType, etPhone, etEmail, etAddress,etLegalRep;
+    ImageView imageAavator;//,imgOther;
+    EditText etTitle, etType, etMaster, etVendor, etOrder, etUrl;
     OkHttpDecorationGet okHttpGet;
     OkHttpDecorationPost okHttpPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_vendor);
+        setContentView(R.layout.activity_add_recommend);
 //        EventBus.getDefault().register(this);
         okHttpGet = new OkHttpDecorationGet(this);
         okHttpPost = new OkHttpDecorationPost(this);
 
         back = (Button) findViewById(R.id.back);
         commit = (Button) findViewById(R.id.commit);
-        imageAavator = (ImageView) findViewById(R.id.iv_add_master);
-        imageLicense = (ImageView) findViewById(R.id.iv_add_license);
+        imageAavator = (ImageView) findViewById(R.id.iv_add_recommend_avator);
 
         back.setOnClickListener(this);
         commit.setOnClickListener(this);
         imageAavator.setOnClickListener(this);
-        imageLicense.setOnClickListener(this);
 
-        etName = (EditText) findViewById(R.id.et_name);
+        etTitle = (EditText) findViewById(R.id.et_title);
         etType = (EditText) findViewById(R.id.et_type);
-        etPhone = (EditText) findViewById(R.id.et_phone);
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etAddress= (EditText) findViewById(R.id.et_address);
-        etLegalRep = (EditText) findViewById(R.id.et_legal_representative);
-
+        etMaster = (EditText) findViewById(R.id.et_master);
+        etVendor = (EditText) findViewById(R.id.et_vendor);
+        etOrder = (EditText) findViewById(R.id.et_order);
+        etUrl = (EditText) findViewById(R.id.et_url);
     }
 
 
@@ -73,34 +67,32 @@ public class AddVendorsActivity extends Activity implements OnHttpPostListener,V
             case R.id.back:
                 break;
             case R.id.commit:
-                okHttpPost.requestSubmitVendorPost(getVendorModelJson("",""));
+                okHttpPost.requestRecommendPost(getRecomendModelJson(""));
                 break;
             case R.id.iv_add_user:
                 break;
         }
     }
 
-    public String getVendorModelJson(String imgAvator,String imageLicense){
-        VendorModel model = new VendorModel();
+    public String getRecomendModelJson(String imgAvator) {
+        RecommendModel model = new RecommendModel();
         model.setUniqueNumber(UniqueNumberUtils.getUniqueNumber());
-        model.setName(filterStringExe(etName.getText()));
-        model.setPhone(filterStringExe(etPhone.getText()));
-        model.setEmail(filterStringExe(etEmail.getText()));
-        model.setAddress(filterStringExe(etAddress.getText()));
-        model.setLegalRepresentative(filterStringExe(etLegalRep.getText()));
+        model.setTitle(filterStringExe(etTitle.getText()));
+        model.setType(filterStringExe(etType.getText()));
+        model.setMasterUniqueNumber(filterStringExe(etMaster.getText()));
+        model.setVendorUniqueNumber(filterStringExe(etVendor.getText()));
+        model.setOrderUniqueNumber(filterStringExe(etOrder.getText()));
+        model.setUrl(filterStringExe(etUrl.getText()));
         model.setImageAvator(imgAvator);
-        model.setImageLicense(imageLicense);
-        model.setImageUrls("");
         Gson gson = new Gson();
         return gson.toJson(model);
     }
 
-    public String filterStringExe(Editable eta){
+    public String filterStringExe(Editable eta) {
         String temp = "";
-        if(null == eta)
+        if (null == eta)
             return "";
-        else
-        {
+        else {
             temp = eta.toString().trim();
             return temp;
         }
@@ -111,4 +103,5 @@ public class AddVendorsActivity extends Activity implements OnHttpPostListener,V
 //        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
 }

@@ -58,7 +58,32 @@ public class OkHttpDecorationPost extends OkHttpDecorationBase {
         FormBody.Builder requestBody = new FormBody.Builder();
         initFormBody(requestBody);
         requestBody.add("MasterModel", jsonStr);
-        requestPostExecute(requestBody.build(), UrlConstant.api_url);
+        requestPostExecute(requestBody.build(), UrlConstant.URL_ADD_MASTER);
+        type = SUBMIT_HOMEWORK_TYPE;
+    }
+
+    public void requestSubmitVendorPost(String jsonStr) {
+        FormBody.Builder requestBody = new FormBody.Builder();
+        initFormBody(requestBody);
+        requestBody.add("VendorModel", jsonStr);
+        requestPostExecute(requestBody.build(), UrlConstant.URL_ADD_VENDOR);
+        type = SUBMIT_HOMEWORK_TYPE;
+
+    }
+    public void requestTemplatePost(String jsonStr) {
+        FormBody.Builder requestBody = new FormBody.Builder();
+        initFormBody(requestBody);
+        requestBody.add("TemplateModel", jsonStr);
+        requestPostExecute(requestBody.build(), UrlConstant.URL_ADD_RECOMMEND);
+        type = SUBMIT_HOMEWORK_TYPE;
+
+    }
+
+    public void requestRecommendPost(String jsonStr) {
+        FormBody.Builder requestBody = new FormBody.Builder();
+        initFormBody(requestBody);
+        requestBody.add("RecommendModel", jsonStr);
+        requestPostExecute(requestBody.build(), UrlConstant.URL_ADD_RECOMMEND);
         type = SUBMIT_HOMEWORK_TYPE;
 
     }

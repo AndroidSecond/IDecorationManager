@@ -1,13 +1,16 @@
 package com.haipeng.decoration.manager.model;
 
 /**
- * Created by Administrator on 2017/7/30.
+ * Created by Administrator on 2017/8/13.
  */
 
-public class MasterModel {
+public class VendorModel {
+
     private Long  uniqueNumber; // 唯一编号
 
     private String name;
+
+    private String type;
 
     private String phone;
 
@@ -23,21 +26,20 @@ public class MasterModel {
 
     private String imageUrls;// 其他一些照片
 
-
-    public Long getUniqueNumber() {
-        return uniqueNumber;
-    }
-
-    public void setUniqueNumber(Long uniqueNumber) {
-        this.uniqueNumber = uniqueNumber;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPhone() {
@@ -64,14 +66,6 @@ public class MasterModel {
         this.address = address;
     }
 
-    public String getLegalRepresentative() {
-        return legalRepresentative;
-    }
-
-    public void setLegalRepresentative(String legalRepresentative) {
-        this.legalRepresentative = legalRepresentative;
-    }
-
     public String getImageAvator() {
         return imageAvator;
     }
@@ -94,5 +88,21 @@ public class MasterModel {
 
     public void setImageUrls(String imageUrls) {
         this.imageUrls = imageUrls;
+    }
+
+    public String getLegalRepresentative() {
+        return legalRepresentative;
+    }
+
+    public void setLegalRepresentative(String legalRepresentative) {
+        this.legalRepresentative = legalRepresentative;
+    }
+
+    public Long getUniqueNumber() {
+        return uniqueNumber;
+    }
+
+    public void setUniqueNumber(Long uniqueNumber) {
+        this.uniqueNumber = uniqueNumber;
     }
 }

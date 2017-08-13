@@ -21,11 +21,12 @@
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
-                android:text="添加模板/推荐设计"
+                android:text="添加推荐"
                 android:textColor="@color/colorWhite"
                 android:textSize="30sp" />
 
             <Button
+                android:id="@+id/back"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
@@ -49,13 +50,27 @@
 
                 <TextView
                     style="@style/add_title_style"
-                    android:text="设计风格" />
+                    android:text="标题" />
+
+                <TextView
+                    style="@style/add_title_style"
+                    android:text="类型" />
+
                 <TextView
                     style="@style/add_title_style"
                     android:text="团队" />
+
                 <TextView
                     style="@style/add_title_style"
                     android:text="供应商" />
+
+                <TextView
+                    style="@style/add_title_style"
+                    android:text="订单" />
+
+                <TextView
+                    style="@style/add_title_style"
+                    android:text="链接" />
 
 
             </LinearLayout>
@@ -70,6 +85,10 @@
                     style="@style/add_edit_style" />
 
                 <EditText
+                    android:id="@+id/et_type"
+                    style="@style/add_edit_style" />
+
+                <EditText
                     android:id="@+id/et_master"
                     style="@style/add_edit_style" />
 
@@ -77,31 +96,43 @@
                     android:id="@+id/et_vendor"
                     style="@style/add_edit_style" />
 
+                <EditText
+                    android:id="@+id/et_order"
+                    style="@style/add_edit_style" />
+
+                <EditText
+                    android:id="@+id/et_url"
+                    style="@style/add_edit_style" />
+
+
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 style="@style/add_title_style"
-                android:text="添加照片"
-                />
+                android:text="头像" />
 
             <ImageView
-                android:id="@+id/iv_avator"
+                android:id="@+id/iv_add_recommend_avator"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:background="@color/colorPrimary"
-                android:layout_marginLeft="30dp"/>
+                android:layout_marginLeft="30dp"
+                android:background="@color/colorPrimary" />
         </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="center">
 
             <Button
+                android:id="@+id/commit"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:background="@color/colorGreenC"
