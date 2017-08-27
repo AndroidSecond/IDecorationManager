@@ -40,7 +40,7 @@ public class AddMastersActivity extends Activity implements OnHttpPostListener, 
 
         back = (Button) findViewById(R.id.back);
         commit = (Button) findViewById(R.id.commit);
-        imageAavator = (ImageView) findViewById(R.id.iv_add_master);
+        imageAavator = (ImageView) findViewById(R.id.iv_add_master_avator);
         imageLicense = (ImageView) findViewById(R.id.iv_add_license);
 
         back.setOnClickListener(this);

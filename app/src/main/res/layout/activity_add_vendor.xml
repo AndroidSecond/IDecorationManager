@@ -117,7 +117,7 @@
                 android:text="头像" />
 
             <ImageView
-                android:id="@+id/iv_add_master_avator"
+                android:id="@+id/iv_add_vendor_avator"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="30dp"
@@ -134,7 +134,7 @@
                 android:text="营业执照" />
 
             <ImageView
-                android:id="@+id/iv_add_master"
+                android:id="@+id/iv_add_license"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="30dp"

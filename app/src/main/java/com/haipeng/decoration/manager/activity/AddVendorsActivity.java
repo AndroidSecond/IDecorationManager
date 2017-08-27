@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.haipeng.decoration.manager.R;
@@ -14,18 +15,19 @@ import com.haipeng.decoration.manager.http.okhttp3.OkHttpDecorationGet;
 import com.haipeng.decoration.manager.http.okhttp3.OkHttpDecorationPost;
 import com.haipeng.decoration.manager.listener.OnHttpPostListener;
 import com.haipeng.decoration.manager.model.MasterModel;
+import com.haipeng.decoration.manager.model.ReturnResult;
 import com.haipeng.decoration.manager.model.UserModel;
 import com.haipeng.decoration.manager.model.VendorModel;
 import com.haipeng.decoration.manager.utils.UniqueNumberUtils;
 
 import de.greenrobot.event.EventBus;
 
-public class AddVendorsActivity extends Activity implements OnHttpPostListener,View.OnClickListener {
+public class AddVendorsActivity extends Activity implements OnHttpPostListener, View.OnClickListener {
 
     Button back;
     Button commit;
-    ImageView imageAavator,imageLicense;//,imgOther;
-    EditText etName,etType, etPhone, etEmail, etAddress,etLegalRep;
+    ImageView imageAavator, imageLicense;//,imgOther;
+    EditText etName, etType, etPhone, etEmail, etAddress, etLegalRep;
     OkHttpDecorationGet okHttpGet;
     OkHttpDecorationPost okHttpPost;
 
@@ -39,7 +41,7 @@ public class AddVendorsActivity extends Activity implements OnHttpPostListener,V
 
         back = (Button) findViewById(R.id.back);
         commit = (Button) findViewById(R.id.commit);
-        imageAavator = (ImageView) findViewById(R.id.iv_add_master);
+        imageAavator = (ImageView) findViewById(R.id.iv_add_vendor_avator);
         imageLicense = (ImageView) findViewById(R.id.iv_add_license);
 
         back.setOnClickListener(this);
@@ -51,7 +53,7 @@ public class AddVendorsActivity extends Activity implements OnHttpPostListener,V
         etType = (EditText) findViewById(R.id.et_type);
         etPhone = (EditText) findViewById(R.id.et_phone);
         etEmail = (EditText) findViewById(R.id.et_email);
-        etAddress= (EditText) findViewById(R.id.et_address);
+        etAddress = (EditText) findViewById(R.id.et_address);
         etLegalRep = (EditText) findViewById(R.id.et_legal_representative);
 
     }
@@ -59,7 +61,10 @@ public class AddVendorsActivity extends Activity implements OnHttpPostListener,V
 
     @Override
     public void responsePostSuccess(int varl, String jsonStr) {
-
+        ReturnResult rr = new Gson().fromJson(jsonStr, ReturnResult.class);
+        if (null != rr) {
+            Toast.makeText(this, rr.getMsg(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -73,14 +78,14 @@ public class AddVendorsActivity extends Activity implements OnHttpPostListener,V
             case R.id.back:
                 break;
             case R.id.commit:
-                okHttpPost.requestSubmitVendorPost(getVendorModelJson("",""));
+                okHttpPost.requestSubmitVendorPost(getVendorModelJson("", ""));
                 break;
             case R.id.iv_add_user:
                 break;
         }
     }
 
-    public String getVendorModelJson(String imgAvator,String imageLicense){
+    public String getVendorModelJson(String imgAvator, String imageLicense) {
         VendorModel model = new VendorModel();
         model.setUniqueNumber(UniqueNumberUtils.getUniqueNumber());
         model.setName(filterStringExe(etName.getText()));
@@ -95,12 +100,11 @@ public class AddVendorsActivity extends Activity implements OnHttpPostListener,V
         return gson.toJson(model);
     }
 
-    public String filterStringExe(Editable eta){
+    public String filterStringExe(Editable eta) {
         String temp = "";
-        if(null == eta)
+        if (null == eta)
             return "";
-        else
-        {
+        else {
             temp = eta.toString().trim();
             return temp;
         }
