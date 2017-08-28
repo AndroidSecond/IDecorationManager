@@ -24,6 +24,7 @@
         <activity android:name=".activity.AddMastersActivity"></activity>
         <activity android:name=".activity.AddVendorsActivity"></activity>
         <activity android:name=".activity.AddOrdersActivity"></activity>
+        <activity android:name=".activity.AddTemplatesActivity"></activity>
 
         <activity android:name=".activity.QueryUserActivity"></activity>
         <activity android:name=".activity.QueryMastersActivity"></activity>

@@ -26,6 +26,7 @@
                 android:textSize="30sp" />
 
             <Button
+                android:id="@+id/back"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
@@ -102,6 +103,7 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/commit"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:background="@color/colorGreenC"

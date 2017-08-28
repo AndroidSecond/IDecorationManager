@@ -70,11 +70,11 @@ public class OkHttpDecorationPost extends OkHttpDecorationBase {
         type = SUBMIT_HOMEWORK_TYPE;
 
     }
-    public void requestTemplatePost(String jsonStr) {
+    public void requestSubmitTemplatePost(String jsonStr) {
         FormBody.Builder requestBody = new FormBody.Builder();
         initFormBody(requestBody);
         requestBody.add("TemplateModel", jsonStr);
-        requestPostExecute(requestBody.build(), UrlConstant.URL_ADD_RECOMMEND);
+        requestPostExecute(requestBody.build(), UrlConstant.URL_ADD_TEMPLATE);
         type = SUBMIT_HOMEWORK_TYPE;
 
     }

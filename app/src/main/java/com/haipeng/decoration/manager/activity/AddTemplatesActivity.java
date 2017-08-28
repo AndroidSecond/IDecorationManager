@@ -68,7 +68,7 @@ public class AddTemplatesActivity extends Activity implements OnHttpPostListener
             case R.id.back:
                 break;
             case R.id.commit:
-                okHttpPost.requestTemplatePost(getTemplateModelJson(""));
+                okHttpPost.requestSubmitTemplatePost(getTemplateModelJson(""));
                 break;
             case R.id.iv_add_user:
                 break;

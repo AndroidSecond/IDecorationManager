@@ -66,6 +66,16 @@
                 style="@style/main_btn"
                 android:text="查询订单" />
 
+            <Button
+                android:id="@+id/btn_add_template"
+                style="@style/main_btn"
+                android:text="添加模板" />
+
+            <Button
+                android:id="@+id/btn_query_template"
+                style="@style/main_btn"
+                android:text="查询模板" />
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
